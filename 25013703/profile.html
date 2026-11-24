@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ernest Pantaleo</title>
+
+    <!-- Iconos de la facultad (ajusta las rutas según tus archivos)-->
+    <link rel="icon" sizes="32x32" href="../icon/logo-32x32.png">
+    <link rel="icon" sizes="192x192" href="../icon/logo-192x192.png">
+    
+    
+    <style>
+        /* Importamos las variables del tema */
+        @import url('../css/_theme.css');
+
+        
+
+        /* --- Estilos Generales --- */
+        body {
+            font-family: var(--primary-font); /* Fuente principal Roboto */
+            background-color: var(--grey-50); /* Fondo gris claro neutro */
+            margin: 0;
+            padding: 20px;
+            color: var(--grey-800); /* Texto oscuro */
+        }
+
+        /* --- Contenedor Principal (La Tarjeta) --- */
+        .tarjeta-pefil {
+            display: flex;
+            background-color: var(--white); /* Fondo blanco */
+            max-width: 900px;
+            margin: 0 auto; /* Centra la tarjeta */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra sutil */
+            border-radius: 8px; /* Bordes redondeados */
+            overflow: hidden; /* Para que la imagen respete los bordes curvos */
+        }
+
+        /* --- Lado Izquierdo: Imagen --- */
+        .contenedor-imagen-perfil {
+            width: 35%; /* La imagen ocupa el 35% del ancho */
+            position: relative;
+            overflow: hidden; /* Recorta cualquier desborde dentro del bloque izquierdo */
+            flex-shrink: 0;
+            
+        }
+
+        .img-perfil {
+            
+            width: calc(100% - 5px);/* Deja 5px a la derecha para ver la franja azul */
+            height: 100%;
+            object-fit: cover; /* Ajusta la imagen sin deformarla */
+            border-bottom-right-radius: 85px; /* La curva en el borde inferior derecho */
+            position: relative;
+            z-index: 2; /* Asegura que la imagen esté por encima de la barra */
+        }
+
+        /* La barra de color a la derecha de la imagen */
+        .contenedor-imagen-perfil::after {
+            content: "";
+            position: absolute; 
+            top: 0;
+            right: 0;
+            width: 85px; /* Grosor de la barra */
+            height: 100%;
+            background-color: var( --main-color); /* Azul claro */
+            z-index: 1;
+            
+        }
+
+        /* --- Lado Derecho: Información --- */
+        .info-perfil {
+            width: 65%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }   
+
+        .nombre-perfil {
+            font-family: var(--condensed-font); 
+            color: var(--accent-color); /* Azul oscuro */
+            margin-top: 0;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .descripcion-perfil {
+            font-family: var(--flex-font); 
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--grey-800); /* Gris oscuro */
+            margin-bottom: 20px;
+        }
+
+        .lista-perfil {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            display: grid;
+            grid-template-columns: 280px 1fr; /* Columna 1: 280px fijos, Columna 2: el resto */
+            row-gap: 8px; /* Separación entre filas */
+            column-gap: 15px; /* Separación entre etiqueta y valor */
+        }
+
+        .lista-perfil li {
+            display: contents; /* Hace que los <li> no interfieran con el grid */
+        }
+
+        .lista-perfil .etiq {
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        /* Valor (respuesta): alineada a la derecha */
+        .lista-perfil .valor {
+            color: var(--grey-800);
+        }
+
+       
+        /* Estilos del Enlace de Correo */
+        .contacto-perfil a {/* Estilos del Enlace de Correo  */
+            color: var(--main-color); /* Color normal: azul claro */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        } 
+        /* Pseudo-clase para cuando el link está "activo" o el ratón encima */
+        .contacto-perfil a:active, /* Cuando el enlace está ACTIVO (siendo clickeado) */
+        .contacto-perfil a:hover {/* Cuando el ratón pasa por encima */
+            color: var(--accent-color); /* Usa la variable accent-color */
+            text-decoration: underline;
+        }
+        
+        
+        
+        /* Aquí escribiremos los estilos (Paso 4) */
+    </style>
+
+</head>
+<body>
+    <!-- 5. Estructura semántica -->
+    <header></header>
+    
+    <section>
+
+        <div class="tarjeta-pefil">
+            <!-- Lado Izquierdo: La Imagen -->
+            <div class="contenedor-imagen-perfil">
+                <img src="25013703.jpg" alt="Foto de Perfil" class="img-perfil">
+            </div>
+
+
+            <!-- Lado Derecho: Los Datos -->
+              <div class="info-perfil">
+
+                <h1 class="nombre-perfil">Ernesto Pantaleo</h1>
+
+                <p class="descripcion-perfil">
+                    Soy estudiante de Computación en la Universidad Central de Venezuela (UCV), 
+                    actualmente cursando el septimo semestre de la carrera. Entre mis pasatiempos se encuentran escuchar música y hacer ejercicio.
+                        
+                </p>
+
+                <ul class="lista-perfil">
+                    
+                
+                    
+                    <li><span class="etiq">Mi color favorito es:</span> <span class="valor">Azul</span></li>
+                    <li><span class="etiq">Mi libro favorito es:</span> <span class="valor">Caballo de Troya</span></li>
+                    <li><span class="etiq">Mi género musical favorito es:</span> <span class="valor">Rock</span></li>
+                    <li><span class="etiq">Mi videojuego favorito es:</span> <span class="valor">Tetris</span></li>
+                    <li><span class="etiq">Lenguajes de programación aprendidos:</span> <span class="valor">C/C++, Java, Python, Prolog, Haskell</span></li>
+
+                
+                
+                
+                </ul>
+
+                <p class="contacto-perfil">
+                    Si necesitan comunicarse conmigo me pueden escribir a:<br>
+                    <a  href="mailto:pantaleoernesto4@gmail.com">pantaleoernesto4@gmail.com</a>
+                </p>
+
+
+
+
+              </div>
+
+
+        </div>
+        <!-- Aquí va el contenido de tu perfil -->
+    </section>
+
+    <footer></footer>   
+    
+</body>
+</html>
