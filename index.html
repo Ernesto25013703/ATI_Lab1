@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATI[UCV]Log 2026-2</title>
+
+    <link rel="icon" sizes="32x32" href="icon/logo-32x32.png">
+    <link rel="icon" sizes="192x192" href="icon/logo-192x192.png">
+
+    <style>
+
+        @import url('css/_theme.css');
+
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /*define la apariencia general de toda la página (<body>) y crea la estructura base para 
+          que el pie de página (<footer>) siempre se mantenga pegado abajo*/
+        body {
+            font-family: var(--primary-font);
+            background-color: var(--grey-50);
+            color: var(--grey-800);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /*diseña el encabezado superior de la página (<header>), aplicándole el color principal de fondo*/
+        header {
+            background-color: var(--main-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding: 10px 20px;
+        }
+        
+        /*alinea horizontalmente los elementos dentro de la barra de navegación (<nav>) y la 
+          centra en la pantalla*/
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+           
+        /*convierte el enlace del logotipo (.logo) en un título grande, blanco, en negrita y 
+          sin subrayado*/
+        .logo {
+            color: var(--white);
+            font-size: 2em;
+            font-weight: 700;
+            text-decoration: none;
+            font-family: var(--condensed-font);
+        }
+
+        /*reduce el tamaño del texto [UCV]*/
+        .logo .ucv {
+            font-size: 0.45em;        
+            font-weight: 400;         
+            vertical-align: baseline; 
+            margin: 0 -5px;           /* Margen negativo: acerca [UCV] hacia "ATI" y hacia "Log" */
+            letter-spacing: 0;        /* Evita que los corchetes y letras internas de [UCV] se aplasten */
+        }
+
+        /*coloca la caja de texto (<input>) y el botón (<button>) del buscador uno al lado 
+          del otro en una misma fila horizontal*/
+        .form-busq {
+            display: flex;
+        }
+
+        /*le da estilo al campo de texto (<input>) del formulario de búsqueda*/
+        .form-busq input {
+            padding: 10px 18px;               
+            border: none;
+            border-radius: 50px 0 0 50px;    
+            width: 300px;
+            font-family: var(--primary-font);
+            outline: none; 
+           
+        }
+
+        /*le da estilo al botón de búsqueda (<button>) del formulario de busqueda*/
+        .form-busq button {
+
+            padding: 10px 25px;              
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            border-radius: 0 50px 50px 0;     
+            cursor: pointer;
+            font-family: var(--primary-font);
+            font-weight: bold;
+            
+        }
+
+        /*crea un contenedor circular de 45x45 píxeles con el fondo de color azul 
+           y centra cualquier elemento que se coloque dentro*/
+        .circulo-usuario {
+            width: 45px;
+            height: 45px;
+            background-color: var(--accent-color); /* Azul oscuro */
+            border-radius: 60%;        
+            display: flex;
+            justify-content: center;   
+            align-items: center;       
+        }
+
+        .icon-us {
+            height: 26px;
+            width: 40px;
+            
+        }
+
+        /* define el contenedor principal de contenido (<section>), centrándolo en la 
+            pantalla y empujando el pie de página (<footer>) hacia el borde*/
+        section {
+            flex: 1; 
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            width: 100%;
+        }
+
+        /*le da estilo al encabezado principal de la sección (.titulo-semestre)*/
+        .titulo-semestre {
+            font-family: var(--condensed-font);
+            color: var(--grey-800);
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+
+        /*organiza los elementos dentro de .tabla-estudiantes en una cuadrícula de 
+          3 columnas del mismo ancho*/
+        .tabla-estudiantes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /*convierte cada elemento .tarjeta-est en una tarjeta visual limpia con esquinas redondeadas y sombra suave*/
+        .tarjeta-est {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-decoration: none; /* Quita el subrayado del enlace */
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /*estandariza el tamaño de las fotos dentro de cada tarjeta de estudiante */
+        .tarjeta-est img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background-color: #202538; /* Color de fondo de las fotos dummy */
+        }
+
+        .info-tar {
+            padding: 0;
+            text-align: left;
+        }
+
+        /*le da estilo al título principal (<h3>) dentro del bloque de información (.info-tar)*/
+        .info-tar h3 {
+            font-family: var(--condensed-font);
+            font-size: 1.1em;
+            padding: 10px 15px;
+            color: var(--grey-950);
+        }
+
+        /* La barra de color abajo */
+        .color-bar {
+            height: 15px;
+            background-color: var(--main-color);
+            width: 100%;
+        }
+
+        /*diseña el pie de página (<footer>) con fondo claro, texto centrado y una línea de color 
+          destacado en su borde superior*/
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--grey-50);
+            border-top: 3px solid var(--accent-color);
+            color: var(--grey-400);
+            font-size: 0.9em;
+        }
+
+
+
+        
+    </style>
+</head>
+
+                                         
+
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">ATI
+                <span class="ucv">[UCV]</span> Logo
+            </a>
+
+            <!-- Formulario de búsqueda -->
+            <form class="form-busq">
+                <input type="text" placeholder="Nombre...">
+                <button type="submit">Buscar</button>
+            </form>
+
+             <!-- Ícono de usuario -->
+            <div class="circulo-usuario">
+                <img src="icon/userIcon.svg" alt="Usuario" class="icon-us">
+            </div>  
+
+        </nav>
+    </header>
+
+    <section>
+        <h2 class="titulo-semestre">Semestre 2026-2</h2>
+        <div class="tabla-estudiantes">
+
+            <!-- Tarjeta 1 -->
+            <a href="25013703/profile.html" class="tarjeta-est">
+                <img src="25013703/25013703.jpg" alt="Ernesto Pantaleo">
+                <div class="info-tar">
+                    <h3>Ernesto Pantaleo</h3>
+                    <div class="color-bar"></div>
+                </div>
+            </a>
+
+            <!-- Tarjeta 2 -->
+             <div class="tarjeta-est">
+                <img src="Dummies/Dummy1.png" alt="Helena Torres">
+                <div class="info-tar">
+                    <h3>Helena Torres</h3>
+                    <div class="color-bar"></div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3 -->
+             <div class="tarjeta-est">
+                <img src="Dummies/Dummy2.png" alt="Carlos Blanco">
+                <div class="info-tar">
+                    <h3>Carlos Blanco</h3>
+                    <div class="color-bar"></div>
+                </div>
+             </div>
+
+             <!-- Tarjeta 4 -->
+             <div class="tarjeta-est">
+                <img src="Dummies/Dummy3.png" alt="Juan Gutierrez">
+                <div class="info-tar">
+                    <h3>Juan Gutierrez</h3>
+                    <div class="color-bar"></div>
+                </div>
+             </div>
+
+             <!-- Tarjeta 5 -->
+             <div class="tarjeta-est">
+                <img src="Dummies/Dummy4.png" alt="Isabel Contreras">
+                <div class="info-tar">
+                    <h3>Isabel Contreras</h3>
+                    <div class="color-bar"></div>
+                </div>
+             </div>
+
+             <!-- Tarjeta 6 -->
+             <div class="tarjeta-est">
+                <img src="Dummies/Dummy5.png" alt="Gabriel Vargas">
+                <div class="info-tar">
+                    <h3>Gabriel Vargas</h3>
+                    <div class="color-bar"></div>
+                </div>
+             </div>
+
+            
+
+        </div> <!--fin tabla estudiantes-->
+
+        
+    </section>
+
+    <footer>
+        <p>Copyright © 2026 Escuela de computación - ATI. Todos los derechos reservados</p>
+    </footer>
+    
+</body>
+</html>
