@@ -142,6 +142,20 @@
             color: inherit;
             display: flex;
             flex-direction: column;
+
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        /*---------------------------------Zoom y rotacion---------------------------------*/
+        .tarjeta-est:hover {
+            /* Zoom del 5% (1.05) y rotación de 2 grados */
+            transform: scale(1.05) rotate(2deg); 
+    
+            /* Aumentar un poco la sombra para dar efecto de "flotar" */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+    
+            /* Asegura que la tarjeta agrandada quede por encima de las demás */
+            z-index: 10; 
         }
 
         /*estandariza el tamaño de las fotos dentro de cada tarjeta de estudiante */
@@ -149,7 +163,7 @@
             width: 100%;
             height: 280px;
             object-fit: cover;
-            background-color: #202538; /* Color de fondo de las fotos dummy */
+            background-color: var(--accent-color)
         }
 
         .info-tar {
@@ -165,11 +179,18 @@
             color: var(--grey-950);
         }
 
-        /* La barra de color abajo */
+      
+        
         .color-bar {
             height: 15px;
             background-color: var(--main-color);
             width: 100%;
+
+        }
+
+        .tarjeta-est:hover .color-bar {
+            background-color: var(--accent-color); /* Cambia al azul oscuro */
+            transition: background-color 0.3s ease; /* Transición suave del color */
         }
 
         /*diseña el pie de página (<footer>) con fondo claro, texto centrado y una línea de color 
@@ -250,7 +271,7 @@
 
         .nombre-perfil {
             font-family: var(--condensed-font); 
-            color: var(--accent-color); /* Azul oscuro */
+            color: var(--main-color); 
             margin-top: 0;
             margin-bottom: 15px;
             letter-spacing: 1px;
